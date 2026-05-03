@@ -48,6 +48,9 @@ public:
 
     //run simulation
     void runSimulation();
+
+    //function to write bug state
+    void writeStateToFile(string filename) const;
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H

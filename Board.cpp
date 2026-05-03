@@ -10,6 +10,7 @@
 #include <cstdlib> // for rand()
 #include <thread>
 #include <chrono>
+#include <fstream>
 
 
 Board::Board()
@@ -382,5 +383,38 @@ void Board::runSimulation()
                  << bugs[i]->getId()
                  << " (" << bugs[i]->getType() << ")" << endl;
         }
+    }
+}
+
+void Board::writeStateToFile(string filename) const
+{
+    ofstream out(filename, ios::app);
+
+    if (out)
+    {
+        for (int i = 0; i < bugs.size(); i++)
+        {
+            Bug* b = bugs[i];
+            pair<int,int> pos = b->getPosition();
+
+            out << b->getId() << " "
+                << b->getType() << " ("
+                << pos.first << "," << pos.second << ") "
+                << b->getHealth() << " "
+                << b->getDirectionAsString() << " ";
+
+            if (b->getType() == "Hopper")
+            {
+                out << b->getHopLength() << " ";
+            }
+
+            out << b->getStatusAsString() << endl;
+        }
+
+        out.close();
+    }
+    else
+    {
+        cout << "Error opening file" << endl;
     }
 }
