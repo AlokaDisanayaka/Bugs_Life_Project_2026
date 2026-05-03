@@ -42,6 +42,9 @@ public:
     //Fight
     void fightBugs();
     void fightPair(Bug* b1, Bug* b2);
+
+    //count alive bugs
+    int countAliveBugs() const;
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H

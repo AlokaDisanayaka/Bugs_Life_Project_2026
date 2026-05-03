@@ -328,3 +328,17 @@ void Board::fightBugs()
         }
     }
 }
+int Board::countAliveBugs() const
+{
+    int count = 0;
+
+    for (int i = 0; i < bugs.size(); i++)
+    {
+        if (bugs[i]->isAlive())
+        {
+            count++;
+        }
+    }
+
+    return count;
+}
