@@ -64,6 +64,7 @@ int main()
         }
         else if (choice == 8)
         {
+            board.writeLifeHistoryToFile();
             cout << "Exiting program... Goodbye...." << endl;
         }
         else

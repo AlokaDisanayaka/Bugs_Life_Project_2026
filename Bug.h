@@ -9,6 +9,7 @@
 #include <utility>
 #include <list>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -42,6 +43,7 @@ public:
 
     void addPositionToPath();
     void displayPath() const;
+    void writePathToFile(ofstream& out) const;
 
     bool isWayBlocked() const;
 

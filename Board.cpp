@@ -482,3 +482,75 @@ void Board::writeStateToFile(string filename) const
         cout << "Error opening file" << endl;
     }
 }
+void Bug::writePathToFile(ofstream& out) const
+{
+    list<pair<int,int> >::const_iterator it;
+
+    for (it = path.begin(); it != path.end(); it++)
+    {
+        out << "(" << it->first << "," << it->second << ")";
+
+        list<pair<int,int> >::const_iterator nextIt = it;
+        nextIt++;
+
+        if (nextIt != path.end())
+        {
+            out << ",";
+        }
+    }
+}
+
+void Board::writeLifeHistoryToFile()
+{
+    // ceate filename
+    string filename = getDateTimeFilename();
+
+    cout << "Saving life history to: " << filename << endl;
+
+    ofstream out(filename); // overwrite file
+
+    if (out)
+    {
+        out << "-------🐞BUG LIFE HISTORY🐞-------------\n\n";
+
+        for (int i = 0; i < bugs.size(); i++)
+        {
+            Bug* b = bugs[i];
+
+            out << b->getId() << " "
+                << b->getType() << " Path: ";
+
+            // write path
+            list<pair<int,int> >::iterator it;
+
+            list<pair<int,int> > pathCopy;
+
+            // a copy is needed because path is protected
+            // reusing displayPath()
+
+            list<pair<int,int> >::const_iterator p;
+
+            out << b->getId() << " "
+            << b->getType() << " Path: ";
+
+            b->writePathToFile(out);
+
+            if (b->isAlive())
+            {
+                out << " Alive";
+            }
+            else
+            {
+                out << " Dead";
+            }
+
+            out << endl;
+        }
+
+        out.close();
+    }
+    else
+    {
+        cout << "Error opening file!" << endl;
+    }
+}
