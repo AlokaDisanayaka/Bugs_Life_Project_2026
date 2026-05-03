@@ -171,3 +171,68 @@ void Board::tapBoard()
 
     cout << "All bugs moved!" << endl;
 }
+
+void Board::displayLifeHistory() const
+{
+    for (int i = 0; i < bugs.size(); i++)
+    {
+        Bug* b = bugs[i];
+
+        cout << b->getId() << " "
+             << b->getType() << " Path: ";
+
+        b->displayPath();
+
+        if (b->isAlive())
+        {
+            cout << " Alive!";
+        }
+        else
+        {
+            cout << " Dead";
+        }
+
+        cout << endl;
+    }
+}
+
+void Board::displayAllCells() const
+{
+    // Loop through all grid cells
+    for (int y = 0; y < 10; y++)
+    {
+        for (int x = 0; x < 10; x++)
+        {
+            cout << "(" << x << "," << y << "): ";
+
+            bool found = false;
+
+            // Check all bugs
+            for (int i = 0; i < bugs.size(); i++)
+            {
+                Bug* b = bugs[i];
+
+                // Only show alive bugs
+                if (!b->isAlive())
+                {
+                    continue;
+                }
+
+                pair<int,int> pos = b->getPosition();
+
+                if (pos.first == x && pos.second == y)
+                {
+                    cout << b->getType() << " " << b->getId() << ", ";
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                cout << "empty";
+            }
+
+            cout << endl;
+        }
+    }
+}

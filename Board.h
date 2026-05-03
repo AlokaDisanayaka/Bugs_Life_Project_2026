@@ -32,6 +32,12 @@ public:
 
     //Tap the board
     void tapBoard();
+
+    //Display lifehistory
+    void displayLifeHistory() const;
+
+    //Dispaly all the cells of the board
+    void displayAllCells() const;
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H
