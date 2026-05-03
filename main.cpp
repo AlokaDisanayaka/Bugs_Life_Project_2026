@@ -4,12 +4,15 @@
 #include "Hopper.h"
 #include "Board.h"
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 int main()
 {
     int choice = 0;
     Board board;
+    srand(time(0)); // random seed
 
     do
     {
@@ -37,11 +40,15 @@ int main()
         }
         else if (choice == 3)
         {
-            cout << "Find a Bug selected." << endl;
+            int id;
+            cout << "Enter Bug ID: ";
+            cin >> id;
+
+            board.findBugById(id);
         }
         else if (choice == 4)
         {
-            cout << "Tap Bug Board selected." << endl;
+            board.tapBoard();
         }
         else if (choice == 5)
         {
