@@ -26,7 +26,8 @@ int main()
         cout << "6. Display all Cells" << endl;
         cout << "7. Run Simulation" << endl;
         cout << "8. Display Visual Board" << endl;
-        cout << "9. Exit" << endl;
+        cout << "9. Step-by-Step Simulation" << endl;
+        cout << "10. Exit" << endl;
         cout << "==========================================" << endl;
         cout << "Enter choice: ";
         cin >> choice;
@@ -72,12 +73,17 @@ int main()
             board.writeLifeHistoryToFile();
             cout << "Exiting program... Goodbye...." << endl;
         }
+        else if (choice == 10)
+        {
+            cin.ignore();
+            board.runStepByStep();
+        }
         else
         {
             cout << "Invalid choice. Try again." << endl;
         }
 
-    } while (choice != 8);
+    } while (choice != 10);
 
 
 
