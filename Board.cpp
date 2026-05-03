@@ -14,6 +14,7 @@
 #include <fstream>
 #include <ctime>
 #include <sstream>
+#include <iostream>
 
 
 Board::Board()
@@ -621,4 +622,45 @@ void Board::displayBoard() const
     }
 
     cout << "  ---------------------" << endl;
+}
+
+void Board::runStepByStep()
+{
+    if (bugs.size() == 0)
+    {
+        cout << "No bugs loaded!" << endl;
+        return;
+    }
+
+    cout << "\nStep-by-Step Simulation Started!" << endl;
+
+    int step = 1;
+
+    while (countAliveBugs() > 1)
+    {
+        cout << "\nPress ENTER to run next step...";
+        cin.ignore();  // clear leftover input
+        cin.get();     // wait for enter
+
+        cout << "\n--- Step " << step << " ---" << endl;
+
+        tapBoard();
+
+        displayBoard(); // show visual board
+
+        step++;
+    }
+
+    cout << "\nSimulation complete!" << endl;
+
+    // Show winner
+    for (int i = 0; i < bugs.size(); i++)
+    {
+        if (bugs[i]->isAlive())
+        {
+            cout << "🏆Winner: Bug "
+                 << bugs[i]->getId()
+                 << " (" << bugs[i]->getType() << ")" << endl;
+        }
+    }
 }

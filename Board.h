@@ -58,6 +58,8 @@ public:
     //display visual board = console grid
     void displayBoard() const;
 
+    //Step-by-Step Simulation
+    void runStepByStep();
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H
