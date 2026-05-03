@@ -19,6 +19,11 @@ void Board::loadFromFile(string filename)
 
     if (!file)
     {
+        file.open("../" + filename);
+    }
+
+    if (!file)
+    {
         cout << "Error opening file!" << endl;
         return;
     }
@@ -74,6 +79,12 @@ void Board::loadFromFile(string filename)
 //DISPLAY FUNCTION
 void Board::displayAllBugs() const
 {
+    if (bugs.empty())
+    {
+        cout << "No bugs loaded. Choose option 1 first." << endl;
+        return;
+    }
+
     for (int i = 0; i < bugs.size(); i++)
     {
         Bug* b = bugs[i];
