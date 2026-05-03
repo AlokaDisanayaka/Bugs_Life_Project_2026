@@ -26,6 +26,8 @@ public:
 
     // Destructor to free memory
     ~Board();
+
+    void findBugById(int id) const;
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H

@@ -114,3 +114,31 @@ Board::~Board()
         delete bugs[i]; // free memory
     }
 }
+void Board::findBugById(int id) const
+{
+    for (int i = 0; i < bugs.size(); i++)
+    {
+        if (bugs[i]->getId() == id)
+        {
+            Bug* b = bugs[i];
+            pair<int,int> pos = b->getPosition();
+
+            cout << b->getId() << " "
+                 << b->getType() << " ("
+                 << pos.first << "," << pos.second << ") "
+                 << b->getHealth() << " "
+                 << b->getDirectionAsString() << " ";
+
+            if (b->getType() == "Hopper")
+            {
+                cout << b->getHopLength() << " ";
+            }
+
+            cout << b->getStatusAsString() << endl;
+
+            return;
+        }
+    }
+
+    cout << "Bug " << id << " not found." << endl;
+}
