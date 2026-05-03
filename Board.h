@@ -4,10 +4,28 @@
 
 #ifndef BUGS_LIFE_PROJECT_2026_BOARD_H
 #define BUGS_LIFE_PROJECT_2026_BOARD_H
+#include <vector>
+#include <string>
+#include "Bug.h"
 
+using namespace std;
 
-class Board {
+class Board
+{
+private:
+    vector<Bug*> bugs; // vector of pointers
+
+public:
+    Board();
+
+    // Load bugs from file
+    void loadFromFile(string filename);
+
+    // Display all bugs
+    void displayAllBugs() const;
+
+    // Destructor to free memory
+    ~Board();
 };
-
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H
