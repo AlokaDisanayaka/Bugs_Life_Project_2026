@@ -9,6 +9,7 @@
 #include <sstream>
 #include <cstdlib> // for rand()
 
+
 Board::Board()
 {
 }
@@ -234,5 +235,47 @@ void Board::displayAllCells() const
 
             cout << endl;
         }
+    }
+}
+
+void Board::fightPair(Bug* b1, Bug* b2)
+{
+    cout << "Fight: " << b1->getId() << " vs " << b2->getId() << endl;
+
+    // 3 rounds max
+    for (int round = 1; round <= 3; round++)
+    {
+        if (!b1->isAlive() || !b2->isAlive())
+        {
+            break;
+        }
+
+        int damage1 = rand() % 6; // 0–5
+        int damage2 = rand() % 6;
+
+        b1->setHealth(b1->getHealth() - damage2);
+        b2->setHealth(b2->getHealth() - damage1);
+
+        cout << "Round " << round << ": "
+             << b1->getId() << " HP=" << b1->getHealth() << ", "
+             << b2->getId() << " HP=" << b2->getHealth() << endl;
+    }
+
+    // Determine result
+    if (!b1->isAlive() && !b2->isAlive())
+    {
+        cout << "Both bugs died!" << endl;
+    }
+    else if (!b1->isAlive())
+    {
+        cout << b2->getId() << " wins!" << endl;
+    }
+    else if (!b2->isAlive())
+    {
+        cout << b1->getId() << " wins!" << endl;
+    }
+    else
+    {
+        cout << "Both survived!" << endl;
     }
 }
