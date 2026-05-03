@@ -38,6 +38,10 @@ public:
 
     //Dispaly all the cells of the board
     void displayAllCells() const;
+
+    //Fight
+    void fightBugs();
+    void fightPair(Bug* b1, Bug* b2);
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H
