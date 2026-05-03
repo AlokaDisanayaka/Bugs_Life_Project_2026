@@ -279,3 +279,52 @@ void Board::fightPair(Bug* b1, Bug* b2)
         cout << "Both survived!" << endl;
     }
 }
+void Board::fightBugs()
+{
+    // Check each cell
+    for (int y = 0; y < 10; y++)
+    {
+        for (int x = 0; x < 10; x++)
+        {
+            vector<Bug*> cellBugs;
+
+            // Collect bugs in this cell
+            for (int i = 0; i < bugs.size(); i++)
+            {
+                Bug* b = bugs[i];
+
+                if (!b->isAlive())
+                {
+                    continue;
+                }
+
+                pair<int,int> pos = b->getPosition();
+
+                if (pos.first == x && pos.second == y)
+                {
+                    cellBugs.push_back(b);
+                }
+            }
+
+            // If more than 1 ->fight
+            while (cellBugs.size() > 1)
+            {
+                Bug* b1 = cellBugs[0];
+                Bug* b2 = cellBugs[1];
+
+                fightPair(b1, b2);
+
+                // Remove dead bugs from list
+                if (!b1->isAlive())
+                {
+                    cellBugs.erase(cellBugs.begin());
+                }
+
+                if (!b2->isAlive())
+                {
+                    cellBugs.erase(cellBugs.begin());
+                }
+            }
+        }
+    }
+}
