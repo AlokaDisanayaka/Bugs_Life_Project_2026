@@ -55,6 +55,9 @@ public:
     //write life history to a file
     void writeLifeHistoryToFile();
 
+    //display visual board = console grid
+    void displayBoard() const;
+
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H

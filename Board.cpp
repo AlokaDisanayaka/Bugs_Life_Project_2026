@@ -560,3 +560,65 @@ void Board::writeLifeHistoryToFile()
         cout << "Error opening file!" << endl;
     }
 }
+
+void Board::displayBoard() const
+{
+    // Print column numbers
+    cout << "   ";
+    for (int x = 0; x < 10; x++)
+    {
+        cout << x << " ";
+    }
+    cout << endl;
+
+    cout << "  ---------------------" << endl;
+
+    // Loop rows
+    for (int y = 0; y < 10; y++)
+    {
+        cout << y << " | ";
+
+        for (int x = 0; x < 10; x++)
+        {
+            int count = 0;
+            char symbol = '.';
+
+            // Check all bugs
+            for (int i = 0; i < bugs.size(); i++)
+            {
+                Bug* b = bugs[i];
+
+                if (!b->isAlive())
+                    continue;
+
+                pair<int,int> pos = b->getPosition();
+
+                if (pos.first == x && pos.second == y)
+                {
+                    count++;
+
+                    // Assign symbol based on type
+                    if (b->getType() == "Crawler")
+                        symbol = 'C';
+                    else if (b->getType() == "Hopper")
+                        symbol = 'H';
+                    else if (b->getType() == "DiagonalBug")
+                        symbol = 'D';
+                }
+            }
+
+            if (count > 1)
+            {
+                cout << "* ";
+            }
+            else
+            {
+                cout << symbol << " ";
+            }
+        }
+
+        cout << endl;
+    }
+
+    cout << "  ---------------------" << endl;
+}
