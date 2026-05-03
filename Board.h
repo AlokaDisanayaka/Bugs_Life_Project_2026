@@ -27,7 +27,11 @@ public:
     // Destructor to free memory
     ~Board();
 
+    //Find a bug by ID
     void findBugById(int id) const;
+
+    //Tap the board
+    void tapBoard();
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H

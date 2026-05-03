@@ -7,6 +7,7 @@
 #include "Hopper.h"
 #include <fstream>
 #include <sstream>
+#include <cstdlib> // for rand()
 
 Board::Board()
 {
@@ -141,4 +142,32 @@ void Board::findBugById(int id) const
     }
 
     cout << "Bug " << id << " not found." << endl;
+}
+
+void Board::tapBoard()
+{
+    if (bugs.size() == 0)
+    {
+        cout << "No bugs on board!" << endl;
+        return;
+    }
+
+    //Choose one bug to freeze
+    int frozenIndex = rand() % bugs.size();
+
+    cout << "Frozen Bug ID: " << bugs[frozenIndex]->getId() << endl;
+
+    for (int i = 0; i < bugs.size(); i++)
+    {
+        // Skip frozen bug
+        if (i == frozenIndex)
+        {
+            continue;
+        }
+
+        // Move all other bugs
+        bugs[i]->move();
+    }
+
+    cout << "All bugs moved!" << endl;
 }
