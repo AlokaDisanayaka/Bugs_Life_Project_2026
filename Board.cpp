@@ -153,24 +153,24 @@ void Board::tapBoard()
         return;
     }
 
-    //Choose one bug to freeze
     int frozenIndex = rand() % bugs.size();
 
     cout << "Frozen Bug ID: " << bugs[frozenIndex]->getId() << endl;
 
     for (int i = 0; i < bugs.size(); i++)
     {
-        // Skip frozen bug
         if (i == frozenIndex)
         {
             continue;
         }
 
-        // Move all other bugs
         bugs[i]->move();
     }
 
-    cout << "All bugs moved!" << endl;
+    // after movement go FIGHT
+    fightBugs();
+
+    cout << "Tap complete!" << endl;
 }
 
 void Board::displayLifeHistory() const
