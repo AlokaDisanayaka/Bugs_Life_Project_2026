@@ -353,6 +353,8 @@ void Board::runSimulation()
         return;
     }
 
+    string filename = "simulation_output.txt";
+
     cout << "Starting simulation...\n";
 
     int step = 1;
@@ -361,28 +363,45 @@ void Board::runSimulation()
     {
         cout << "\n--- Step " << step << " ---" << endl;
 
-        tapBoard(); // move + fight
+        // Write step header
+        ofstream out(filename, ios::app);
+        if (out)
+        {
+            out << "\n--- Step " << step << " ---\n";
+            out.close();
+        }
 
-        displayAllBugs(); // show current state
+        tapBoard();
+
+        displayAllBugs();
+        writeStateToFile(filename);
 
         step++;
 
-        // wait 1 second
+        //wait for one second
         this_thread::sleep_for(chrono::seconds(1));
         //https://www.geeksforgeeks.org/cpp/how-to-add-timed-delay-in-cpp/
     }
 
     cout << "\nSimulation complete!" << endl;
 
-    // Find winner
-    for (int i = 0; i < bugs.size(); i++)
+    // Write winner
+    ofstream out(filename, ios::app);
+    if (out)
     {
-        if (bugs[i]->isAlive())
+        out << "\nSimulation complete!\n";
+
+        for (int i = 0; i < bugs.size(); i++)
         {
-            cout << "🏆 Winner: Bug "
-                 << bugs[i]->getId()
-                 << " (" << bugs[i]->getType() << ")" << endl;
+            if (bugs[i]->isAlive())
+            {
+                out << "🏆Winner: Bug "
+                    << bugs[i]->getId()
+                    << " (" << bugs[i]->getType() << ")\n";
+            }
         }
+
+        out.close();
     }
 }
 
