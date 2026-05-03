@@ -52,11 +52,11 @@ int main()
         }
         else if (choice == 5)
         {
-            cout << "Display Life History selected." << endl;
+            board.displayLifeHistory();
         }
         else if (choice == 6)
         {
-            cout << "Display all Cells selected." << endl;
+            board.displayAllCells();
         }
         else if (choice == 7)
         {
