@@ -5,6 +5,7 @@
 #include "Board.h"
 #include "Crawler.h"
 #include "Hopper.h"
+#include "DiagonalBug.h"
 #include <fstream>
 #include <sstream>
 #include <cstdlib> // for rand()
@@ -74,6 +75,11 @@ void Board::loadFromFile(string filename)
             int hopLength = stoi(temp);
 
             Bug* bug = new Hopper(id, x, y, direction, health, hopLength);
+            bugs.push_back(bug);
+        }
+        else if (type == "D")
+        {
+            Bug* bug = new DiagonalBug(id, x, y, direction, health);
             bugs.push_back(bug);
         }
     }
