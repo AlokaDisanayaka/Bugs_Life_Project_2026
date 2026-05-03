@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Bug.h"
 #include "Crawler.h"
+#include "Hopper.h"
 #include <vector>
 using namespace std;
 
@@ -63,25 +64,35 @@ int main()
     //
     // } while (choice != 8);
 
-    //temporary test -------
+
+    //hopper tests
     vector<Bug*> bugs;
 
-    // Create one crawler
     Bug* b1 = new Crawler(101, 0, 0, 2, 10);
+    Bug* b2 = new Hopper(102, 5, 5, 1, 10, 3);
 
     bugs.push_back(b1);
+    bugs.push_back(b2);
 
-    // Move it 5 times
     for (int i = 0; i < 5; i++)
     {
-        bugs[0]->move();
+        for (int j = 0; j < bugs.size(); j++)
+        {
+            bugs[j]->move();
+        }
     }
 
-    // Display path
+    cout << "Crawler Path: ";
     bugs[0]->displayPath();
 
-    // Free memory
-    delete bugs[0];
+    cout << "\nHopper Path: ";
+    bugs[1]->displayPath();
+
+    // free memory
+    for (int i = 0; i < bugs.size(); i++)
+    {
+        delete bugs[i];
+    }
 
 
 
