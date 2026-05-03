@@ -11,6 +11,8 @@
 #include <thread>
 #include <chrono>
 #include <fstream>
+#include <ctime>
+#include <sstream>
 
 
 Board::Board()
@@ -345,6 +347,30 @@ int Board::countAliveBugs() const
 
     return count;
 }
+//Generate date time filename
+string getDateTimeFilename()
+{
+    time_t now = time(0);
+    tm* ltm = localtime(&now);
+
+    stringstream ss;
+
+    ss << "bugs_life_history_"
+       << (1900 + ltm->tm_year)
+       << "_"
+       << (1 + ltm->tm_mon)
+       << "_"
+       << ltm->tm_mday
+       << "_"
+       << ltm->tm_hour
+       << "_"
+       << ltm->tm_min
+       << "_"
+       << ltm->tm_sec
+       << ".out";
+
+    return ss.str();
+}
 void Board::runSimulation()
 {
     if (bugs.size() == 0)
@@ -353,9 +379,23 @@ void Board::runSimulation()
         return;
     }
 
-    string filename = "simulation_output.txt";
+    // Create dynamic filename
+    string filename = getDateTimeFilename();
 
-    cout << "Starting simulation...\n";
+    cout << "Saving results to: " << filename << endl;
+
+    //RESET FILE (overwrite)
+    ofstream clearFile(filename);
+    if (clearFile)
+    {
+        clearFile << "Simulation Start\n";
+        clearFile.close();
+    }
+    else
+    {
+        cout << "Error creating file!" << endl;
+        return;
+    }
 
     int step = 1;
 
@@ -374,6 +414,8 @@ void Board::runSimulation()
         tapBoard();
 
         displayAllBugs();
+
+        // Write bug state
         writeStateToFile(filename);
 
         step++;
@@ -385,7 +427,7 @@ void Board::runSimulation()
 
     cout << "\nSimulation complete!" << endl;
 
-    // Write winner
+    //write winner
     ofstream out(filename, ios::app);
     if (out)
     {
@@ -395,6 +437,9 @@ void Board::runSimulation()
         {
             if (bugs[i]->isAlive())
             {
+                cout << "🏆Winner: Bug "
+                     << bugs[i]->getId() << endl;
+
                 out << "🏆Winner: Bug "
                     << bugs[i]->getId()
                     << " (" << bugs[i]->getType() << ")\n";
