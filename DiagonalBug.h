@@ -14,5 +14,7 @@ public:
     void move();
 
     string getType() const;
+
+    string getDirectionAsString() const;
 };
 #endif //BUGS_LIFE_PROJECT_2026_DIAGONALBUG_H

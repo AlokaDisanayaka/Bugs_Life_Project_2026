@@ -84,3 +84,27 @@ void DiagonalBug::move()
 
     addPositionToPath();
 }
+
+string DiagonalBug::getDirectionAsString() const
+{
+    if (direction == 1)
+    {
+        return "North-East";
+    }
+    else if (direction == 2)
+    {
+        return "South-East";
+    }
+    else if (direction == 3)
+    {
+        return "South-West";
+    }
+    else if (direction == 4)
+    {
+        return "North-West";
+    }
+    else
+    {
+        return "Unknown";
+    }
+}

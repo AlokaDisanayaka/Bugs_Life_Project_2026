@@ -38,7 +38,8 @@ public:
     void setHealth(int newHealth);
     void setAlive(bool status);
 
-    string getDirectionAsString() const;
+    //string getDirectionAsString() const;
+    virtual string getDirectionAsString() const;
     string getStatusAsString() const;
 
     void addPositionToPath();
