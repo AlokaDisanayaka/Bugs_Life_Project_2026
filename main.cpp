@@ -60,11 +60,11 @@ int main()
         }
         else if (choice == 7)
         {
-            cout << "Run Simulation selected." << endl;
+            board.runSimulation();
         }
         else if (choice == 8)
         {
-            cout << "Exiting program..." << endl;
+            cout << "Exiting program... Goodbye...." << endl;
         }
         else
         {

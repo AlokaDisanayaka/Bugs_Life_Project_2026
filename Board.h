@@ -45,6 +45,9 @@ public:
 
     //count alive bugs
     int countAliveBugs() const;
+
+    //run simulation
+    void runSimulation();
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H

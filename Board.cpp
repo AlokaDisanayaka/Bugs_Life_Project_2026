@@ -8,6 +8,8 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib> // for rand()
+#include <thread>
+#include <chrono>
 
 
 Board::Board()
@@ -341,4 +343,44 @@ int Board::countAliveBugs() const
     }
 
     return count;
+}
+void Board::runSimulation()
+{
+    if (bugs.size() == 0)
+    {
+        cout << "No bugs loaded!" << endl;
+        return;
+    }
+
+    cout << "Starting simulation...\n";
+
+    int step = 1;
+
+    while (countAliveBugs() > 1)
+    {
+        cout << "\n--- Step " << step << " ---" << endl;
+
+        tapBoard(); // move + fight
+
+        displayAllBugs(); // show current state
+
+        step++;
+
+        // wait 1 second
+        this_thread::sleep_for(chrono::seconds(1));
+        //https://www.geeksforgeeks.org/cpp/how-to-add-timed-delay-in-cpp/
+    }
+
+    cout << "\nSimulation complete!" << endl;
+
+    // Find winner
+    for (int i = 0; i < bugs.size(); i++)
+    {
+        if (bugs[i]->isAlive())
+        {
+            cout << "🏆 Winner: Bug "
+                 << bugs[i]->getId()
+                 << " (" << bugs[i]->getType() << ")" << endl;
+        }
+    }
 }
