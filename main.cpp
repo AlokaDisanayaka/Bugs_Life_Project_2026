@@ -25,7 +25,8 @@ int main()
         cout << "5. Display Life History of all Bugs" << endl;
         cout << "6. Display all Cells" << endl;
         cout << "7. Run Simulation" << endl;
-        cout << "8. Exit" << endl;
+        cout << "8. Display Visual Board" << endl;
+        cout << "9. Exit" << endl;
         cout << "==========================================" << endl;
         cout << "Enter choice: ";
         cin >> choice;
@@ -63,6 +64,10 @@ int main()
             board.runSimulation();
         }
         else if (choice == 8)
+        {
+            board.displayBoard();
+        }
+        else if (choice == 9)
         {
             board.writeLifeHistoryToFile();
             cout << "Exiting program... Goodbye...." << endl;
