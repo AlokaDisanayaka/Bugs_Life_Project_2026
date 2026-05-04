@@ -55,11 +55,16 @@ public:
     //write life history to a file
     void writeLifeHistoryToFile();
 
+    //EXTRA FEATURES-----------------
+
     //display visual board = console grid
     void displayBoard() const;
 
     //Step-by-Step Simulation
     void runStepByStep();
+
+    //display leaderboard
+    void displayLeaderboard() const;
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H

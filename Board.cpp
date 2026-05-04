@@ -664,3 +664,58 @@ void Board::runStepByStep()
         }
     }
 }
+
+void Board::displayLeaderboard() const
+{
+    int aliveCount = 0;
+    int deadCount = 0;
+
+    Bug* winner = NULL;
+    Bug* strongest = NULL;
+
+    for (int i = 0; i < bugs.size(); i++)
+    {
+        Bug* b = bugs[i];
+
+        if (b->isAlive())
+        {
+            aliveCount++;
+            winner = b;
+        }
+        else
+        {
+            deadCount++;
+        }
+
+        // Track strongest bug with highest health
+        if (strongest == NULL || b->getHealth() > strongest->getHealth())
+        {
+            strongest = b;
+        }
+    }
+
+    cout << "\n===== LEADERBOARD =====" << endl;
+
+    if (winner != NULL)
+    {
+        cout << "Winner: Bug "
+             << winner->getId()
+             << " (" << winner->getType() << ")" << endl;
+    }
+    else
+    {
+        cout << "No winner yet." << endl;
+    }
+
+    cout << "Alive Bugs: " << aliveCount << endl;
+    cout << "Dead Bugs: " << deadCount << endl;
+
+    if (strongest != NULL)
+    {
+        cout << "Strongest Bug: "
+             << strongest->getId()
+             << " (Health: " << strongest->getHealth() << ")" << endl;
+    }
+
+    cout << "========================" << endl;
+}
