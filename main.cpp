@@ -70,13 +70,13 @@ int main()
         }
         else if (choice == 9)
         {
-            board.writeLifeHistoryToFile();
-            cout << "Exiting program... Goodbye...." << endl;
+            cin.ignore();
+            board.runStepByStep();
         }
         else if (choice == 10)
         {
-            cin.ignore();
-            board.runStepByStep();
+            board.writeLifeHistoryToFile();
+            cout << "Exiting program... Goodbye...." << endl;
         }
         else
         {
