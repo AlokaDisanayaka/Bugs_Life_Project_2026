@@ -121,6 +121,11 @@ void Board::displayAllBugs() const
     }
 }
 
+const vector<Bug*>& Board::getBugs() const
+{
+    return bugs;
+}
+
 Board::~Board()
 {
     for (int i = 0; i < bugs.size(); i++)
@@ -562,6 +567,7 @@ void Board::writeLifeHistoryToFile()
     }
 }
 
+//============================EXTRA FEATURES ======================
 void Board::displayBoard() const
 {
     // Print column numbers

@@ -3,6 +3,7 @@
 #include "Crawler.h"
 #include "Hopper.h"
 #include "Board.h"
+#include "sfml_display.h"
 #include <vector>
 #include <cstdlib>
 #include <ctime>
@@ -28,7 +29,8 @@ int main()
         cout << "8. Display Visual Board" << endl;
         cout << "9. Step-by-Step Simulation" << endl;
         cout << "10. Display Leaderboard" << endl;
-        cout << "11. Exit" << endl;
+        cout << "11. View SFML Bug Board" << endl;
+        cout << "12. Exit" << endl;
         cout << "==========================================" << endl;
         cout << "Enter choice: ";
         cin >> choice;
@@ -80,6 +82,10 @@ int main()
         }
         else if (choice == 11)
         {
+            displaySFMLBoard(board);
+        }
+        else if (choice == 12)
+        {
             board.writeLifeHistoryToFile();
             cout << "Exiting program... Goodbye...." << endl;
         }
@@ -88,7 +94,7 @@ int main()
             cout << "Invalid choice. Try again." << endl;
         }
 
-    } while (choice != 11);
+    } while (choice != 12);
 
 
 
