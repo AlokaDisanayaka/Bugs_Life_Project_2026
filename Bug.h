@@ -27,7 +27,7 @@ protected:
                      //If Hopper → +1 hop length
                      //If Crawler → moves twice occasionally
 public:
-    Bug(int id, int x, int y, int direction, int health,bool evolved);
+    Bug(int id, int x, int y, int direction, int health);
 
     virtual ~Bug();
 

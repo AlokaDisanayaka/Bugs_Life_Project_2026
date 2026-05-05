@@ -4,7 +4,7 @@
 
 #include "Bug.h"
 
-Bug::Bug(int id, int x, int y, int direction, int health, bool evolved)
+Bug::Bug(int id, int x, int y, int direction, int health)
 {
     this->id = id;
     this->position.first = x;
