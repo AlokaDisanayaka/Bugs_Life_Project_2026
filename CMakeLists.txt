@@ -13,4 +13,5 @@ add_executable(Bugs_Life_Project_2026
         Board.cpp
         Board.h
         DiagonalBug.cpp
-        DiagonalBug.h)
+        DiagonalBug.h
+        main.cpp)
