@@ -4,7 +4,7 @@
 
 #include "Bug.h"
 
-Bug::Bug(int id, int x, int y, int direction, int health)
+Bug::Bug(int id, int x, int y, int direction, int health, bool evolved)
 {
     this->id = id;
     this->position.first = x;
@@ -12,6 +12,7 @@ Bug::Bug(int id, int x, int y, int direction, int health)
     this->direction = direction;
     this->health = health;
     this->alive = true;
+    this-> evolved=false;
 
     // Store the starting position in the bug's life history
     addPositionToPath();
@@ -178,4 +179,20 @@ bool Bug::getPathAt(int index, pair<int,int>& pos) const
 
     pos = *it;
     return true;
+}
+//evolve feature
+void Bug::evolve()
+{
+    if (!evolved)
+    {
+        cout << "Bug " << id << " has evolved!" << endl;
+
+        health += 3;
+        evolved = true;
+    }
+}
+
+bool Bug::isEvolved() const
+{
+    return evolved;
 }

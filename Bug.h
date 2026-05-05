@@ -22,9 +22,12 @@ protected:
     int health;
     bool alive;
     list<pair<int, int> > path;
-
+    bool evolved; // new feature When a bug wins a fight, it evolves:
+                     //+3 health
+                     //If Hopper → +1 hop length
+                     //If Crawler → moves twice occasionally
 public:
-    Bug(int id, int x, int y, int direction, int health);
+    Bug(int id, int x, int y, int direction, int health,bool evolved);
 
     virtual ~Bug();
 
@@ -55,6 +58,10 @@ public:
     //helper functions for relplay mode
     int getPathSize() const;
     bool getPathAt(int index, pair<int,int>& pos) const;
+
+    //evolve functions
+    void evolve();
+    bool isEvolved() const;
 };
 
 
