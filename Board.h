@@ -65,6 +65,9 @@ public:
 
     //display leaderboard
     void displayLeaderboard() const;
+
+    //replay mode
+    void replaySimulation();
 };
 
 #endif //BUGS_LIFE_PROJECT_2026_BOARD_H
