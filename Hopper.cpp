@@ -66,6 +66,12 @@ void Hopper::move()
         }
     }
 
+    int actualHop = hopLength;
+
+    if (evolved)
+    {
+        actualHop += 1;
+    }
     // Save final position
     addPositionToPath();
 }

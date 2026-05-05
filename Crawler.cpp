@@ -50,6 +50,17 @@ void Crawler::move()
         position.first--;
     }
 
+    if (evolved && rand() % 2 == 0)
+    {
+        // extra move
+        if (!isWayBlocked())
+        {
+            if (direction == 1) position.second--;
+            else if (direction == 2) position.first++;
+            else if (direction == 3) position.second++;
+            else if (direction == 4) position.first--;
+        }
+    }
     // Save new position in path history
     addPositionToPath();
 }
