@@ -51,6 +51,10 @@ public:
     virtual void move() = 0;
     virtual string getType() const = 0;
     virtual int getHopLength() const;
+
+    //helper functions for relplay mode
+    int getPathSize() const;
+    bool getPathAt(int index, pair<int,int>& pos) const;
 };
 
 

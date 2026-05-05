@@ -24,9 +24,6 @@ public:
     // Display all bugs
     void displayAllBugs() const;
 
-    // Give read-only access to the bugs for the SFML display
-    const vector<Bug*>& getBugs() const;
-
     // Destructor to free memory
     ~Board();
 

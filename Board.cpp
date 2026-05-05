@@ -121,11 +121,6 @@ void Board::displayAllBugs() const
     }
 }
 
-const vector<Bug*>& Board::getBugs() const
-{
-    return bugs;
-}
-
 Board::~Board()
 {
     for (int i = 0; i < bugs.size(); i++)
@@ -724,4 +719,68 @@ void Board::displayLeaderboard() const
     }
 
     cout << "========================" << endl;
+}
+
+void Board::replaySimulation()
+{
+    cout << "\n===== REPLAY MODE =====" << endl;
+
+    int maxSteps = 0;
+
+    // Find longest path
+    for (int i = 0; i < bugs.size(); i++)
+    {
+        int size = bugs[i]->getPathSize();
+        if (size > maxSteps)
+        {
+            maxSteps = size;
+        }
+    }
+
+    // Replay each step
+    for (int step = 0; step < maxSteps; step++)
+    {
+        cout << "\nStep " << step << endl;
+
+        // temporary grid
+        char grid[10][10];
+
+        // fill empty
+        for (int y = 0; y < 10; y++)
+        {
+            for (int x = 0; x < 10; x++)
+            {
+                grid[y][x] = ' ';
+            }
+        }
+
+        // place bugs
+        for (int i = 0; i < bugs.size(); i++)
+        {
+            pair<int,int> pos;
+
+            if (bugs[i]->getPathAt(step, pos))
+            {
+                char symbol = ' ';
+
+                if (bugs[i]->getType() == "Crawler") symbol = 'C';
+                else if (bugs[i]->getType() == "Hopper") symbol = 'H';
+                else if (bugs[i]->getType() == "DiangonalBug") symbol = 'D';
+
+                grid[pos.second][pos.first] = symbol;
+            }
+        }
+
+        // display grid
+        for (int y = 0; y < 10; y++)
+        {
+            for (int x = 0; x < 10; x++)
+            {
+                cout << "[" << grid[y][x] << "]";
+            }
+            cout << endl;
+        }
+
+        this_thread::sleep_for(chrono::milliseconds(500));
+    }
 }

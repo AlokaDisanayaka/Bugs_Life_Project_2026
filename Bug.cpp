@@ -158,3 +158,24 @@ int Bug::getHopLength() const
     // Crawlers do not have hop length.
     return 0;
 }
+
+//helper functions for replay mode
+int Bug::getPathSize() const
+{
+    return path.size();
+}
+
+bool Bug::getPathAt(int index, pair<int,int>& pos) const
+{
+    if (index >= path.size()) return false;
+
+    list<pair<int,int>>::const_iterator it = path.begin();
+
+    for (int i = 0; i < index; i++)
+    {
+        it++;
+    }
+
+    pos = *it;
+    return true;
+}
