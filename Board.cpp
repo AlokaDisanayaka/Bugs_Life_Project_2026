@@ -15,7 +15,7 @@
 #include <ctime>
 #include <sstream>
 #include <iostream>
-
+#include <string>
 
 Board::Board()
 {
@@ -117,6 +117,10 @@ void Board::displayAllBugs() const
             cout << b->getHopLength() << " ";
         }
 
+        if (b->isEvolved())
+        {
+            cout << " [Evolved]";
+        }
         cout << b->getStatusAsString() << endl;
     }
 }
