@@ -281,10 +281,12 @@ void Board::fightPair(Bug* b1, Bug* b2)
     else if (!b1->isAlive())
     {
         cout << b2->getId() << " wins!" << endl;
+        b2->evolve();
     }
     else if (!b2->isAlive())
     {
         cout << b1->getId() << " wins!" << endl;
+        b1->evolve();
     }
     else
     {
