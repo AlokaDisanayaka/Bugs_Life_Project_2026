@@ -3,6 +3,7 @@
 #include "Crawler.h"
 #include "Hopper.h"
 #include "Board.h"
+#include "sfml_view.h"
 #include <vector>
 #include <cstdlib>
 #include <ctime>
@@ -16,22 +17,27 @@ int main()
 
     do
     {
-        cout << "===========================================" << endl;
-        cout << "\n============= BUG'S LIFE MENU ===========" << endl;
-        cout << "1. Initialize Bug Board" << endl;
-        cout << "2. Display all Bugs" << endl;
-        cout << "3. Find a Bug" << endl;
-        cout << "4. Tap the Bug Board" << endl;
-        cout << "5. Display Life History of all Bugs" << endl;
-        cout << "6. Display all Cells" << endl;
-        cout << "7. Run Simulation" << endl;
-        cout << "8. Display Visual Board" << endl;
-        cout << "9. Step-by-Step Simulation" << endl;
-        cout << "10. Display Leaderboard" << endl;
-        cout << "11. Replay Simulation" << endl;
-        cout << "12. Exit" << endl;
-        cout << "==========================================" << endl;
-        cout << "Enter choice: ";
+            cout << "\n=====================================\n";
+            cout << "        BUG'S LIFE SIMULATOR\n";
+            cout << "=====================================\n\n";
+
+            cout << "[1] Initialize Bug Board\n";
+            cout << "[2] Display All Bugs\n";
+            cout << "[3] Find a Bug\n";
+            cout << "[4] Tap the Board\n";
+            cout << "[5] Display Life History\n";
+            cout << "[6] Display All Cells\n";
+            cout << "[7] Run Simulation\n";
+            cout << "[8] Display Visual Board\n";
+            cout << "[9] Step-by-Step Simulation\n";
+            cout << "[10] Leaderboard\n";
+            cout << "[11] Replay Simulation\n";
+            cout << "[12] Launch SFML Visualizer\n";
+            cout << "[13] Exit\n";
+
+            cout << "\n-------------------------------------\n";
+            cout << "Enter your choice: ";
+
         cin >> choice;
 
         if (choice == 1)
@@ -85,6 +91,10 @@ int main()
         }
         else if (choice == 12)
         {
+            launchSFML(board);
+        }
+        else if (choice == 13)
+        {
             board.writeLifeHistoryToFile();
             cout << "Exiting program... Goodbye...." << endl;
         }
@@ -93,7 +103,8 @@ int main()
             cout << "Invalid choice. Try again." << endl;
         }
 
-    } while (choice != 12);
+    } while (choice != 13);
+
 
     return 0;
 }
